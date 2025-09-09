@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pooja Sharma — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #071023;
+      --card: rgba(255,255,255,0.04);
+      --muted: #9aa6b2;
+      --accent1: #00d4ff; /* teal */
+      --accent2: #9b5cff; /* purple */
+      --glass: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      --glass-border: rgba(255,255,255,0.06);
+      --glass-strong: rgba(255,255,255,0.07);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background: radial-gradient(1200px 500px at 10% 10%, rgba(155,92,255,0.06), transparent 10%),
+                      radial-gradient(1000px 400px at 90% 90%, rgba(0,212,255,0.04), transparent 10%),
+                      var(--bg);
+      color:#e6eef0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* NAV */
+    .nav {
+      position:fixed;left:0;right:0;top:18px;z-index:60;
+      display:flex;justify-content:center;pointer-events:none;
+    }
+    .nav-inner{
+      display:flex;gap:16px;background:rgba(255,255,255,0.02);backdrop-filter:blur(6px);
+      border:1px solid var(--glass-border);padding:10px 18px;border-radius:999px;align-items:center;
+      pointer-events:auto;
+    }
+    .nav-inner a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:999px;}
+    .nav-inner a:hover{color:white;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 6px 30px rgba(155,92,255,0.12);}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;display:flex;align-items:center;padding:90px 24px 60px;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 20px;}
+    .hero-left{flex:1;max-width:640px}
+    .hero-right{flex:1;display:flex;align-items:center;justify-content:center}
+    .eyebrow{color:var(--accent1);font-weight:700;letter-spacing:1px;}
+    h1{
+      font-family:Poppins, Inter, sans-serif;font-size:48px;margin:14px 0 8px;line-height:1.02;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .roles{color:var(--muted);font-weight:600;margin-bottom:18px}
+    .typing {
+      display:inline-block;
+      border-right:2px solid rgba(230,238,240,0.18);
+      padding-right:6px;
+      white-space:nowrap;
+      overflow:hidden;
+      vertical-align:middle;
+    }
+    .hero-cta{display:flex;gap:12px;margin-top:22px}
+
+    /* CARD STYLES */
+    .glass-card{
+      background:var(--glass);border:1px solid var(--glass-border);padding:18px;border-radius:14px;color:#dbeaf0;
+      box-shadow:0 6px 22px rgba(2,6,23,0.5);
+    }
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+    .skill{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px;border-radius:12px;border:1px solid var(--glass-border);text-align:center;
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .skill:hover{transform:translateY(-6px);box-shadow:0 14px 35px rgba(0,212,255,0.06)}
+    .skill i{font-size:20px;color:var(--accent1);margin-bottom:10px}
+    .skill h5{margin:6px 0 0;font-size:15px;color:#eaf7fb}
+
+    /* PROJECTS */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:12px}
+    .project{
+      position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);
+      transition:transform .2s ease, box-shadow .2s ease;cursor:pointer;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    .project:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+    .project-thumb{height:160px;background-size:cover;background-position:center;filter:contrast(.95) saturate(1.05);}
+    .project-body{padding:14px}
+    .project-title{font-weight:700;color:#fff}
+    .project-desc{color:var(--muted);font-size:14px;margin-top:8px}
+    .project-tags{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .project-actions{display:flex;gap:8px;margin-top:12px}
+
+    .btn-neon{
+      display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;border:0;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#04111a;font-weight:700;box-shadow:0 8px 30px rgba(155,92,255,0.12);
+      text-decoration:none;
+    }
+    .btn-outline-neon{
+      padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);color:#d9eef6;background:transparent;text-decoration:none;
+    }
+
+    /* TIMELINE */
+    .timeline{display:grid;gap:14px}
+    .timeline .item{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .input{
+      background:#071a27;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:8px;color:#dbeaf0;width:100%;
+    }
+
+    /* FOOTER */
+    footer{margin-top:36px;padding:46px 0;text-align:center;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:880px){
+      .hero{padding:70px 18px}
+      .contact-grid{grid-template-columns:1fr}
+      .nav{top:12px}
+      h1{font-size:34px}
+    }
+
+    /* subtle animated gradient border under hero */
+    .gradient-line{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 10px 40px rgba(0,212,255,0.06)}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav" role="navigation" aria-label="primary">
+    <div class="nav-inner glass-card">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/Pooja8448" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github" style="color:var(--muted)"></i></a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="home" role="banner">
+    <div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap;">
+      <div class="hero-left" data-aos="fade-up">
+        <div class="eyebrow">Hello, I'm</div>
+        <h1>Pooja Sharma</h1>
+        <div class="roles">
+          <span class="typing" id="typed">AI-Assisted Developer • Frontend Engineer • Flutter Enthusiast</span>
+        </div>
+        <p style="color:var(--muted);line-height:1.6;max-width:680px;margin-top:12px">
+          I build delightful responsive websites, help create Flutter apps using AI tools, write technical content, and optimize UX with a focus on speed and accessibility. Open for frontend roles and freelance projects.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn-neon" href="#contact"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+          <a class="btn-outline-neon" href="#projects"><i class="fa-solid fa-folder-open"></i> My Work</a>
+          <a class="btn-outline-neon" id="resumeBtn" href="#" title="Download resume (replace link)"> <i class="fa-solid fa-download"></i> Resume</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+          <div><i class="fa-regular fa-envelope"></i> <a href="mailto:miss.poojaupadhyay2002@gmail.com" style="color:var(--muted);text-decoration:none">miss.poojaupadhyay2002@gmail.com</a></div>
+          <div><i class="fa-solid fa-phone"></i> <a href="tel:+918448521314" style="color:var(--muted);text-decoration:none">+91 84485 21314</a></div>
+        </div>
+      </div>
+
+      <div class="hero-right" data-aos="zoom-in">
+        <!-- Avatar placeholder — replace with img later -->
+        <div style="width:300px;height:300px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent2),var(--accent1));box-shadow:0 20px 60px rgba(0,0,0,0.6);font-weight:800;font-size:48px">
+          P S
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="gradient-line" style="margin:12px 0 26px"></div>
+
+    <!-- ABOUT -->
+    <section id="about" style="padding:18px 0 34px" data-aos="fade-up">
+      <div class="glass-card">
+        <h3 style="margin:0 0 10px">About Me</h3>
+        <p style="color:var(--muted);line-height:1.7;margin:0;">
+          I'm an AI-assisted developer with a BCA (Distinction) and practical experience building responsive front-end solutions, assisting Flutter development using AI, and producing marketing content. I use tools like ChatGPT to accelerate development and create polished outputs quickly.
+        </p>
+        <div style="display:flex;gap:18px;margin-top:14px;flex-wrap:wrap">
+          <div style="min-width:180px">
+            <strong>Location</strong>
+            <div style="color:var(--muted)">Badarpur, Delhi</div>
+          </div>
+          <div style="min-width:180px">
+            <strong>Availability</strong>
+            <div style="color:var(--muted)">Open to frontend roles & freelance projects</div>
+          </div>
+          <div style="min-width:180px">
+            <strong>Hobbies</strong>
+            <div style="color:var(--muted)">Reading • Drawing • Internet Surfing • Traveling</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" style="padding:18px 0 34px" data-aos="fade-up">
+      <h3>Skills</h3>
+      <div class="skills-grid" style="margin-top:12px">
+        <div class="skill">
+          <i class="fa-brands fa-html5"></i>
+          <h5>HTML & CSS</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Responsive layouts, BEM-style components</div>
+        </div>
+
+        <div class="skill">
+          <i class="fa-brands fa-js-square"></i>
+          <h5>JavaScript</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">DOM, event handling, animations</div>
+        </div>
+
+        <div class="skill">
+          <i class="fa-brands fa-github"></i>
+          <h5>Git & GitHub</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Repos, Pages, version control</div>
+        </div>
+
+        <div class="skill">
+          <i class="fa-brands fa-android"></i>
+          <h5>Flutter (AI-assisted)</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Code generation & prototyping</div>
+        </div>
+
+        <div class="skill">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <h5>Testing & QA</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Cross-device & mobile app testing</div>
+        </div>
+
+        <div class="skill">
+          <i class="fa-solid fa-pen-nib"></i>
+          <h5>Content & Marketing</h5>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Articles, outreach & branding</div>
+        </div>
+<!-- AI Tools Expert -->
+<div class="skill">
+  <i class="fa-solid fa-robot"></i>
+  <h5>AI Tools Expert</h5>
+  <div style="color:var(--muted);font-size:13px;margin-top:6px">ChatGPT, Blackbox AI, Copilot, Napkin AI</div>
+</div>
+
+<!-- Data Collection -->
+<div class="skill">
+  <i class="fa-solid fa-database"></i>
+  <h5>Data Collection</h5>
+  <div style="color:var(--muted);font-size:13px;margin-top:6px">Data collection and organisation</div>
+</div>
+
+<!-- Communication -->
+<div class="skill">
+  <i class="fa-solid fa-comments"></i>
+  <h5>Communication</h5>
+  <div style="color:var(--muted);font-size:13px;margin-top:6px">Effective communication & collaboration</div>
+</div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" style="padding:18px 0 34px" data-aos="fade-up">
+      <h3>Projects</h3>
+      <p style="color:var(--muted);margin-top:6px">Click <strong>Live Demo</strong> to open site and <strong>View Code</strong> to inspect repo.</p>
+
+      <div class="projects-grid">
+        <!-- Birthday -->
+        <div class="project" data-aos="zoom-in">
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1516910817561-3800a5b5459d?q=80&w=1400&auto=format&fit=crop');"></div>
+          <div class="project-body">
+            <div class="project-title">Birthday Website</div>
+            <div class="project-desc">Interactive birthday landing page built for fun using HTML, CSS and JS.</div>
+            <div class="project-tags">
+              <div class="tag">HTML</div><div class="tag">CSS</div><div class="tag">JavaScript</div>
+            </div>
+            <div class="project-actions">
+              <a class="btn-neon" href="https://pooja8448.github.io/birthday_website/" target="_blank" rel="noopener">Live Demo</a>
+             
+            </div>
+          </div>
+        </div>
+
+        <!-- Prank -->
+        <div class="project" data-aos="zoom-in" data-aos-delay="80">
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=1400&auto=format&fit=crop');"></div>
+          <div class="project-body">
+            <div class="project-title">Prank Website</div>
+            <div class="project-desc">A playful demo exploring interactions & small JS effects.</div>
+            <div class="project-tags">
+              <div class="tag">HTML</div><div class="tag">CSS</div><div class="tag">JS</div>
+            </div>
+            <div class="project-actions">
+              <a class="btn-neon" href="https://pooja8448.github.io/Prank_website/" target="_blank" rel="noopener">Live Demo</a>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- Veggie (Coming soon) -->
+        <div class="project" data-aos="zoom-in" data-aos-delay="160">
+          <div class="project-thumb" style="background-image:linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400&auto=format&fit=crop');"></div>
+          <div class="project-body">
+            <div class="project-title">Veggie Delight (Coming soon)</div>
+            <div class="project-desc">Restaurant website — will include table booking & menu. Repo and demo coming soon.</div>
+            <div class="project-tags">
+              <div class="tag">Planned</div><div class="tag">HTML</div><div class="tag">JS</div>
+            </div>
+            <div class="project-actions">
+              <a class="btn-outline-neon" href="#" onclick="alert('Veggie Delight is being recreated — will add link here once uploaded.')" >Live Demo</a>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- GitHub Link -->
+        <div class="project" data-aos="zoom-in" data-aos-delay="220">
+          <div class="project-thumb" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop');"></div>
+          <div class="project-body">
+            <div class="project-title">More on GitHub</div>
+            <div class="project-desc">Explore additional Flutter demos, AI-assisted projects and content pieces on my GitHub.</div>
+            <div class="project-actions">
+              <a class="btn-neon" href="https://github.com/Pooja8448" target="_blank" rel="noopener">View GitHub</a>
+              <a class="btn-outline-neon" href="mailto:miss.poojaupadhyay2002@gmail.com">Request Demo</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" style="padding:18px 0 34px" data-aos="fade-up">
+      <h3>Experience</h3>
+      <div class="timeline" style="margin-top:12px">
+        <div class="item">
+          <strong>Cresol — Junior Frontend Developer</strong> <span style="float:right;color:var(--muted)">Oct 2023 – Aug 2024</span>
+          <div style="color:var(--muted);margin-top:8px">Built responsive websites, ensured cross-browser compatibility, and used AI tools to assist coding and debugging.</div>
+          <ul style="margin-top:8px;color:var(--muted)">
+            <li>Implemented responsive UI components and performance optimizations.</li>
+            <li>Collaborated with QA on cross-device testing.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <strong>OrgOrbit — AI Tools & Digital Assistant</strong> <span style="float:right;color:var(--muted)">Dec 2024 – Present</span>
+          <div style="color:var(--muted);margin-top:8px">Generated Flutter snippets with AI, wrote branding articles, ran outreach campaigns and performed app testing.</div>
+<ul style="margin-top:8px;color:var(--muted)">
+            <li>Researched clients, found job descriptions, and handled bidding             on Upwork.</li>
+            <li>Published articles on external websites for marketing             outreach.</li>
+            <li> Created AI-generated videos for promotional purposes.</li>
+            <li>Collected and organized data to support business operations.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" style="padding:18px 0 34px" data-aos="fade-up">
+      <h3>Education</h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px">
+        <div class="glass-card" style="flex:1;min-width:260px">
+          <strong>BCA — Arunachal University of Studies</strong>
+          <div style="color:var(--muted);margin-top:6px">Graduated 2023 — Distinction</div>
+        </div>
+        <div class="glass-card" style="flex:1;min-width:260px">
+          <strong>Intermediate — CBSE</strong>
+          <div style="color:var(--muted);margin-top:6px">Completed 2019</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="padding:18px 0 60px" data-aos="fade-up">
+      <h3>Contact</h3>
+      <div class="contact-grid" style="margin-top:12px">
+        <form class="glass-card" onsubmit="return handleContact(event)">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <input class="input" id="cname" placeholder="Your name" required />
+            <input class="input" id="cemail" placeholder="Your email" required type="email" style="min-width:220px" />
+          </div>
+          <div style="margin-top:12px">
+            <input class="input" id="ctopic" placeholder="Subject (e.g., Project inquiry)" />
+          </div>
+          <div style="margin-top:12px">
+            <textarea class="input" id="cmsg" placeholder="Message" rows="6" required></textarea>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+            <button class="btn-neon" type="submit"><i class="fa-solid fa-paper-plane"></i> Send</button>
+         
+          </div>
+        </form>
+
+        <div class="glass-card" style="height:100%;">
+          <h4 style="margin-top:0">Get in touch</h4>
+          <p style="color:var(--muted)">Prefer to email or connect on LinkedIn — both are clickable below.</p>
+
+          <div style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap">
+            <a href="mailto:miss.poojaupadhyay2002@gmail.com" class="btn-outline-neon"><i class="fa-regular fa-envelope"></i> Email</a>
+            <a id="linkedinLink" class="btn-outline-neon" href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="btn-outline-neon" href="https://github.com/Pooja8448" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+
+          <div style="margin-top:16px;color:var(--muted)">
+            <strong>Phone</strong>
+            <div>+91 84485 21314</div>
+            <strong style="margin-top:10px;display:block">Location</strong>
+            <div>Badarpur, Delhi</div>
+          </div>
+
+          <hr style="border-color:rgba(255,255,255,0.03);margin:16px 0" />
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="max-width:900px;margin:0 auto">
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px">
+          <a class="btn-outline-neon" href="https://github.com/Pooja8448" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a class="btn-outline-neon" href="#" id="linkedinFooter"><i class="fa-brands fa-linkedin"></i></a>
+          <a class="btn-outline-neon" href="mailto:miss.poojaupadhyay2002@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+        <div style="color:var(--muted)">© <span id="yr"></span> Pooja Sharma — AI-Assisted Developer</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({duration:700, once:true, easing:'ease-out-cubic'});
+
+    // set year
+    document.getElementById('yr').innerText = new Date().getFullYear();
+
+    // Typing effect (simple)
+    const txts = [
+      "AI-Assisted Developer",
+      "Frontend Engineer",
+      "Flutter Enthusiast",
+      "Content Writer & Tester"
+    ];
+    let idx=0, pos=0, forward=true;
+    const typed = document.getElementById('typed');
+    function tick(){
+      const current = txts[idx];
+      if(forward){
+        pos++;
+        typed.innerText = current.slice(0,pos);
+        if(pos===current.length){ forward=false; setTimeout(tick,900); return; }
+      } else {
+        pos--;
+        typed.innerText = current.slice(0,pos);
+        if(pos===0){ forward=true; idx=(idx+1)%txts.length; setTimeout(tick,300); return; }
+      }
+      setTimeout(tick,80);
+    }
+    tick();
+
+    // Contact form: open mail client
+    function handleContact(e){
+      e.preventDefault();
+      const name=document.getElementById('cname').value.trim();
+      const email=document.getElementById('cemail').value.trim();
+      const topic=document.getElementById('ctopic').value.trim()||"Portfolio Contact";
+      const msg=document.getElementById('cmsg').value.trim();
+      const subject = encodeURIComponent(topic + " — from " + name);
+      const body = encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+msg);
+      window.location.href = `mailto:miss.poojaupadhyay2002@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    // Replace LinkedIn placeholders quickly (edit here)
+    // Replace with your LinkedIn URL:
+    const LINKEDIN_URL = "https://www.linkedin.com/in/pooja-sharma-please-replace"; // <-- REPLACE THIS
+    document.getElementById('linkedinLink').href = LINKEDIN_URL;
+    document.getElementById('linkedinFooter').href = LINKEDIN_URL;
+    document.getElementById('resumeText').href = "https://drive.google.com/file/d/1rfurZTfwhRulVCoR54jErzr6P1iwQnQ8/view?usp=drive_link";
+
+    document.getElementById('resumeBtn').addEventListener('click', function(e){
+      e.preventDefault();
+      const url = document.getElementById('resumeText').href;
+      if(!url || url === "#" ) { alert("Please replace the resume link in the code with your uploaded CV (resume PDF)."); return; }
+      window.open(url,"_blank");
+    });
+  </script>
+</body>
+</html>
