@@ -135,7 +135,20 @@
       .contact-grid{grid-template-columns:1fr}
       .nav{top:12px}
       h1{font-size:34px}
+
+      /* Navbar adjustments for mobile only */
+      .nav-inner {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+      }
+      .nav-inner a {
+        padding: 10px 14px;
+        font-size: 16px;
+      }
     }
+
+   
 
     /* subtle animated gradient border under hero */
     .gradient-line{height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 10px 40px rgba(0,212,255,0.06)}
@@ -508,4 +521,3 @@
   </script>
 </body>
 </html>
-
